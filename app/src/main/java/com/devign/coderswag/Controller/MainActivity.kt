@@ -1,5 +1,6 @@
 package com.devign.coderswag.Controller
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -10,6 +11,7 @@ import com.devign.coderswag.Adapters.CategoryRecycleAdapter
 import com.devign.coderswag.Model.Category
 import com.devign.coderswag.R
 import com.devign.coderswag.Services.DataService
+import com.devign.coderswag.Utilities.EXTRA_CATEGORY
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +24,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 //        adapter = CategoryAdapter(this, DataService.catergories)
-        adapter = CategoryRecycleAdapter(this, DataService.catergories)
+//        adapter = CategoryRecycleAdapter(this, DataService.catergories)
+
+        //Using Lambda express to initiate the onClicks
+        adapter = CategoryRecycleAdapter((this, DataService.catergories) {category ->
+            val productIntent = Intent(this, ProductsActivity::class.java)
+            productIntent.putExtra(EXTRA_CATEGORY, category.title)
+            startActivity(productIntent)
+        }
         categoryListView.adapter = adapter
 
 //        // Adding a click listener for list views
@@ -35,5 +44,7 @@ class MainActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         categoryListView.layoutManager = layoutManager
         categoryListView.setHasFixedSize(true)
+
+        // Create a click listener using Lambda
     }
 }
