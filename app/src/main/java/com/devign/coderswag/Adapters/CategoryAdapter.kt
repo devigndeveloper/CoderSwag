@@ -13,10 +13,7 @@ import com.devign.coderswag.R
 import java.text.FieldPosition
 
 // All Array Adapters first calls this BaseAdapter before initiolizing - this is the parent for ALL Array Adapters. All Array adapaters need these four thing to operate...
-class CategoryAdapter(context: Context, categories: List<Category>) : BaseAdapter() {
-
-    val context = context
-    val categories = categories
+class CategoryAdapter(val context: Context, val categories: List<Category>) : BaseAdapter() {
 
     // What a user sees
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
