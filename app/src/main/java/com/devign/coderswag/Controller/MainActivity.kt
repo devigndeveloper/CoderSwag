@@ -3,12 +3,8 @@ package com.devign.coderswag.Controller
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.devign.coderswag.Adapters.CategoryAdapter
 import com.devign.coderswag.Adapters.CategoryRecycleAdapter
-import com.devign.coderswag.Model.Category
 import com.devign.coderswag.R
 import com.devign.coderswag.Services.DataService
 import com.devign.coderswag.Utilities.EXTRA_CATEGORY
@@ -23,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        adapter = CategoryAdapter(this, DataService.catergories)
-//        adapter = CategoryRecycleAdapter(this, DataService.catergories)
+//        adapter = CategoryAdapter(this, DataService.categories)
+//        adapter = CategoryRecycleAdapter(this, DataService.categories)
 
         //Using Lambda express to initiate the onClicks
-        adapter = CategoryRecycleAdapter((this, DataService.catergories) {category ->
+        adapter = CategoryRecycleAdapter((this, DataService.categories) { category ->
             val productIntent = Intent(this, ProductsActivity::class.java)
             productIntent.putExtra(EXTRA_CATEGORY, category.title)
             startActivity(productIntent)
@@ -36,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 //        // Adding a click listener for list views
 //        categoryListView.setOnItemClickListener { adapterView, view, i, l ->
-//            val category = DataService.catergories[i]
+//            val category = DataService.categories[i]
 //            Toast.makeText(this,"You clicked on the ${category.title} cell", Toast.LENGTH_SHORT).show()
 //        }
 
