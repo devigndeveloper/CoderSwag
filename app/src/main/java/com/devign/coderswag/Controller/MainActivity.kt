@@ -22,12 +22,13 @@ class MainActivity : AppCompatActivity() {
 //        adapter = CategoryAdapter(this, DataService.categories)
 //        adapter = CategoryRecycleAdapter(this, DataService.categories)
 
-        //Using Lambda express to initiate the onClicks
-        adapter = CategoryRecycleAdapter((this, DataService.categories) { category ->
+        // Using Lambda to initiate onClicks on List Items
+        adapter = CategoryRecycleAdapter(this, DataService.categories) { category ->
             val productIntent = Intent(this, ProductsActivity::class.java)
             productIntent.putExtra(EXTRA_CATEGORY, category.title)
             startActivity(productIntent)
         }
+        // Creates the adapter
         categoryListView.adapter = adapter
 
 //        // Adding a click listener for list views
